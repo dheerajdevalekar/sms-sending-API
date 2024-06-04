@@ -36,4 +36,5 @@ def send_sms(sms_data: SMSBasemodel):
             logger.info(f'Unable to send SMS to {sms_data.contact_num}: {sms_data.message}')
             raise HTTPException(status_code=res.status_code, detail=res.json())
     except Exception as e:
+        logger.error(f'Error to send SMS to {sms_data.contact_num}-{sms_data.message}: {e}')
         raise HTTPException(status_code=500, detail=f'{e}')
